@@ -1,0 +1,99 @@
+
+
+html, body {
+
+    font-family:    "PT Serif", Georgia;
+    font-size:      20px;
+    line-height:    24px;
+
+    background-color:   #333;
+    color:              #fff;
+}
+
+body {
+    margin:         0 20px 50px 20px;
+}
+
+code {
+    background:     #272822;
+    padding:        0 5px;
+}
+
+a, a:link, a:visited, a:hover {
+    color:              #f2a335;
+    text-decoration:    none;
+}
+a:hover {
+    text-decoration:    underline;
+}
+
+.page-brand a {
+    font-size:          26px;
+}
+
+.page-heading {
+    background-color:   #444;
+    padding:            20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+.page-container {
+    max-width:      980px;
+    margin:         0 auto;
+}
+
+.posts-list {
+    margin-top:     20px;
+}
+
+.post-heading a {
+    font-size:      30px;
+    line-height:    40px;
+}
+
+h1 {
+    font-weight:    normal;
+    margin:         20px 0;
+    font-size:      40px;
+    line-height:    50px;
+}
+
+.page-nav {
+    padding:        0;
+    font-size:      16px;
+}
+
+.page-nav li {
+    list-style:     none;
+    display:        block;
+    float:          left;
+    margin-right:   10px;
+}
+
+.page-nav a {
+
+}
+
+.post-meta {
+    font-size:      16px;
+}
+
+.post-entry {
+    border-bottom:  4px solid #f2a335;
+}
+
+.posts-list .post-entry {
+    border-bottom:  0;
+}
+
+.page-footer {
+    border-top:     4px solid #f2a335;
+    padding-top:    20px;
+}
+
+.pagination {
+    margin-top:     20px;
+    margin-bottom:  20px;
+}

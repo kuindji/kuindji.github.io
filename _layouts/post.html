@@ -1,9 +1,39 @@
 ---
 layout: default
 ---
-<h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
 
-<div class="post">
-{{ content }}
+<div class="page-content">
+    <h1 class="post-heading">
+        {{ page.title }}
+    </h1>
+    <div class="post-meta">
+        <span>
+            <a href="{{ page.url }}">{{ page.date | date_to_string }}</a>
+        </span>
+        |
+        <span>
+            {% for cat in page.categories %}
+            <a href="/categories.html#{{ cat }}-ref">{{ cat }}</a>
+            {% endfor %}
+        </span>
+        |
+        <span>
+            {% for tag in page.tags %}
+            <a href="/tags.html#{{ tag }}-ref">{{ tag }}</a>
+            {% endfor %}
+        </span>
+    </div>
+    <div class="post-entry">
+        {{ content }}
+    </div>
 </div>
+<div class="post-pager">
+    {% if page.previous %}
+    <a href="{{ page.previous.url }}">&larr; Previous</a>
+    {% endif %}
+    {% if page.next %}
+    <a href="{{ page.next.url }}">Next &rarr;</a>
+    {% endif %}
+</div>
+{% include disqus_comments.md %}
+
