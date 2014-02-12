@@ -48,6 +48,10 @@ a:hover {
     margin-top:     20px;
 }
 
+.post-heading {
+    margin-bottom:  20px;
+}
+
 .post-heading a {
     font-size:      30px;
     line-height:    30px;
@@ -101,5 +105,12 @@ h1 {
 .post-pager {
     margin-top:     20px;
     margin-bottom:  20px;
+}
+
+pre {
+    -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
+    -moz-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
+    -o-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
 }
 
