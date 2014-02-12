@@ -14,10 +14,6 @@ body {
     margin:         0 20px 50px 20px;
 }
 
-code {
-    background:     #272822;
-    padding:        0 5px;
-}
 
 a, a:link, a:visited, a:hover {
     color:              #f2a335;
@@ -55,6 +51,10 @@ a:hover {
 .post-heading a {
     font-size:      30px;
     line-height:    30px;
+}
+
+.post-entry {
+    padding-bottom: 20px;
 }
 
 h1 {
@@ -105,12 +105,5 @@ h1 {
 .post-pager {
     margin-top:     20px;
     margin-bottom:  20px;
-}
-
-pre {
-    -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
-    -moz-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
-    -o-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
-    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.4);
 }
 

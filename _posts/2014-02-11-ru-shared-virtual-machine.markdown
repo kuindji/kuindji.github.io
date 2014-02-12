@@ -26,7 +26,7 @@ tags: virtualbox ubuntu php
 Виртуальная машина должна иметь доступ в интернет, в домашней обстановке должна быть доступна для обоих компьютеров, а в поездке только для ноутбука.
 Редактируем `/etc/network/interfaces`:
 
-<pre><code class="language-bash">
+{% highlight bash %}
 # NAT adapter. Предоставляет доступ к интернет
 auto eth0
 iface eth0 inet dhcp
@@ -44,7 +44,7 @@ iface eth2 inet static
 	address 192.168.1.XXX
 	netmask 255.255.255.0
 	gateway 192.168.1.1
-</code></pre>
+{% endhighlight %}
 
 XXX и gateway выбирайте сами, но учитывайте настройки VirtualBox: `Preferences > Network > Host-only networks -> edit -> DHCP server`. На десктопе в настройках виртуальной машины создаем все три адаптера.
 
@@ -60,17 +60,18 @@ XXX и gateway выбирайте сами, но учитывайте настр
 
 Как и в Vargant, сам код проектов находится на host машине. Чтобы виртуальная машина имела к нему доступ, нужно монтировать папки из хоста в гостевую машину. (В VirtualBox есть механизм создания общей папки - наверное можно воспользоваться им, не проверял. Vargant использует именно ее).
 
-<pre><code class="language-bash">
+{% highlight bash %}
 $ sudo apt-get install cifs.utils
 $ sudo apt-get install sshfs
-</code></pre>
+{% endhighlight %}
 
 С такого рода папками есть несколько проблем. При изменении файла на виндос хост-машине в линуксе не срабатывают inotify события, из-за чего страдают сервисы, следящие за изменениями в папках (например, iwatch). Частично эту проблему решает [watchntouch](https://github.com/rubyruy/watchntouch).
 Еще одна проблема в том, что apache отказывается нормально работать, когда document root  находится внутри смонтированной папки. Поэтому мы создаем document root на гостевой машине, а внутри нее симлинки на все нужные папки внутри проекта.
 
 Для этого я использую php скрипт (такой же можно написать на любом языке), который помимо этого переключает виртуальную машину с десктопа на лаптоп и обратно.
 
-<pre><code class="language-php">
+{% highlight php %}
+<?php
 $profile	= $argv[1];
 $ip			= isset($argv[2]) ? $argv[2] : null;
 
@@ -144,19 +145,21 @@ $services = array_reverse($services);
 foreach ($services as $service) {
 	passthru("service $service start");
 }
-</code></pre>
+?>
+{% endhighlight %}
 
 Можно вызывать этот скрипт вручную после старта машины, а можно запускать его автоматически при загрузке.
 
-<pre><code class="language-bash">
+{% highlight bash %}
 $ sudo php profile.php w7 192.168.1.2
-</code></pre>
+{% endhighlight %}
 
 Таким образом мы можем переключать виртуальную машину между десктопом и лаптопом. Осталось синхронизировать файлы всех проектов.
 
 ##Синхронизация проектов
 
-<pre><code class="language-php">
+{% highlight php %}
+<?php
 $opt 	= getopt("", array(
 	"from:", "to:", "osx:", "w7:",
 	"dry::", "out::", "path::",
@@ -263,11 +266,12 @@ unmount($to, $toLocation);
 echo "-- removing directories\n";
 passthru("rm -r $fromLocation");
 passthru("rm -r $toLocation");
-</code></pre>
+?>
+{% endhighlight %}
 
 Этот скрипт выполняется на виртуальной машине. Он монтирует обе папки проектов к себе и синхронизирует их с помощью rsync. Таким образом переключение между компьютерами выполняется двумя командами:
 
-<pre><code class="language-bash">
+{% highlight bash %}
 $ sudo project-sync --from=w7 --to=osx --w7=w7IP --osx=osxIP
 $ sudo profile osx osxIP
-</code></pre>
+{% endhighlight %}

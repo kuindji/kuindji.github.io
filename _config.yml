@@ -1,5 +1,6 @@
 name: Your New Jekyll Site
 markdown: redcarpet
-pygments: false
+pygments: true
 paginate: 10
 title: kuindji
+permalink: /:year/:month/:day/:title.html
